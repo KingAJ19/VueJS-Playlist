@@ -16,6 +16,10 @@
             <label>Momoshiki</label>
             <input type="checkbox" value="Kenshiki" v-model="blog.categories"/>
         </div>
+        <label>Author:</label>
+        <select v-model="blog.author">
+            <option v-for="author in authors">{{ author }}</option>
+        </select>
     </form>
     <div id="preview">
         <h3>Preview Blog</h3>
@@ -26,6 +30,7 @@
         <ul>
             <li v-for="category in blog.categories">{{ category }}</li>
         </ul>
+        <p>Author: {{ blog.author }}</p>
     </div>
     
   </div>
@@ -40,8 +45,10 @@ export default {
       blog: {
           title: "",
           content: "",
-          categories: []
-      }
+          categories: [],
+          author: ""
+      },
+      authors: ['Minato Namikaze', 'Kakashi Hatake', 'Tobirama Senju']
     }
   },
   methods:{
