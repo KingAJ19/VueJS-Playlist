@@ -1,32 +1,35 @@
 <template>
   <div>
-    <app-header></app-header>
-    <app-ninjas v-bind:ninjas="ninjas"></app-ninjas>
-    <app-footer></app-footer>
+    <form-helper>
+      <div slot="form-header">
+        <h3>This is the title of the form</h3>
+        <p>Info about the form</p>
+      </div>
+      <div slot="form-fields">
+        <input type="text" placeholder="name" required/>
+        <input type="password" placeholder="password" required/>
+      </div>
+      <div slot="form-contols">
+        <button v-on:click="handleSubmit">Submit</button>
+      </div>
+    </form-helper>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
-import Ninjas from './components/Ninjas.vue';
+import formHelper from './components/formHelper.vue';
+
 export default {
-  components: {
-    'app-header': Header,
-    'app-footer': Footer,
-    'app-ninjas': Ninjas
-  },
+    components: {
+      'form-helper': formHelper
+    },
   data () {
     return {
-      ninjas: [
-                {name: 'Itachi', speciality: 'Tsukuyomi', show: false},
-                {name: 'Naruto', speciality: 'Shadow Clones', show: false},
-                {name: 'Nagato', speciality: 'Rinnegan', show: false},
-                {name: 'Hashirama', speciality: 'Wood Style', show: false},
-                {name: 'Kakashi', speciality: 'Lightning Style', show: false},
-                {name: 'Sasuke', speciality: 'Chidori', show: false}
-            ]
+      title: 'I am a dynamic slot title'
     }
+  },
+  methods:{
+
   }
 }
 </script>
