@@ -7,14 +7,14 @@
         <label>Blog Content:</label>
         <textarea v-model.lazy="blog.content"></textarea>
         <div id="checkboxes">
-            <label>Uchiha</label>
-            <input type="checkbox" value="Itachi" v-model="blog.categories"/>
-            <label>Uzumaki</label>
-            <input type="checkbox" value="Naruto" v-model="blog.categories"/>
-            <label>Hyuuga</label>
-            <input type="checkbox" value="Hinata" v-model="blog.categories"/>
-            <label>Momoshiki</label>
-            <input type="checkbox" value="Kenshiki" v-model="blog.categories"/>
+            <label>Anime</label>
+            <input type="checkbox" value="Anime" v-model="blog.categories"/>
+            <label>Movies</label>
+            <input type="checkbox" value="Movies" v-model="blog.categories"/>
+            <label>Music</label>
+            <input type="checkbox" value="Music" v-model="blog.categories"/>
+            <label>Games</label>
+            <input type="checkbox" value="Games" v-model="blog.categories"/>
         </div>
         <label>Author:</label>
         <select v-model="blog.author">
@@ -52,17 +52,13 @@ export default {
           categories: [],
           author: ""
       },
-      authors: ['Minato Namikaze', 'Kakashi Hatake', 'Tobirama Senju'],
+      authors: ['Male', 'Female', 'Other'],
       submitted: false
     }
   },
   methods:{
       post:function(){
-          this.$http.post('http://jsonplaceholder.typicode.com/posts', {
-              title: this.blog.title,
-              body: this.blog.content,
-              userId: 1
-          }).then(function(data){
+          this.$http.post('https://anime-blog-ef171.firebaseio.com/posts.json', this.blog).then(function(data){
               console.log(data);
               this.submitted = true;
           });
